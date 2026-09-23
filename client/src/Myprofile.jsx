@@ -2,6 +2,7 @@ import React,{useState, useEffect, useContext} from 'react'
 import { store } from './App'
 import { Navigate } from 'react-router-dom'
 import UserDetails from './UserDetails'
+import { API_URL } from './api'
 
 const Myprofile = () => {
   const[data, setData]= useState(null)
@@ -12,7 +13,7 @@ const Myprofile = () => {
   useEffect(() => {
     
       if(token){
-        fetch("http://localhost:4000/users/myprofile", {
+        fetch(`${API_URL}/users/myprofile`, {
           method:"GET",
           headers:{"Authorization": `Bearer ${token}`}
         })

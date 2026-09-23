@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import { useNavigate } from 'react-router-dom'
+import { API_URL } from './api'
 
 const Register = () => {
   const navigate = useNavigate()
@@ -39,7 +40,7 @@ const Register = () => {
       }
       setLoading(true)
         try{
-            const res = await fetch(`http://localhost:4000/users/add-emp`, {
+            const res = await fetch(`${API_URL}/users/add-emp`, {
             method:"POST",
             headers:{"Content-type":"application/json"},
             body:JSON.stringify(data)

@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react'
+import { API_URL } from './api'
 
 const UserDetails = () => {
     const[users, setUsers] = useState([])
@@ -7,7 +8,7 @@ const UserDetails = () => {
   const[error, setError] = useState("")
 
     useEffect(() => {
-        fetch("http://localhost:4000/users/allemployees")
+        fetch(`${API_URL}/users/allemployees`)
         .then(res => res.json())
         .then(data => setUsers(data))
     }, [])
@@ -47,7 +48,7 @@ const UserDetails = () => {
       return
     }
 
-    const res = await fetch(`http://localhost:4000/users/allemployees/${id}`, {
+    const res = await fetch(`${API_URL}/users/allemployees/${id}`, {
       method:"PUT",
       headers:{"Content-type":"application/json"},
       body:JSON.stringify(editData)
@@ -65,7 +66,7 @@ const UserDetails = () => {
     if(!window.confirm("Delete this user?")){
       return
     }
-    const res = await fetch(`http://localhost:4000/users/allemployees/${id}`, {
+    const res = await fetch(`${API_URL}/users/allemployees/${id}`, {
       method:"DELETE"
     })
     if(!res.ok){

@@ -1,6 +1,7 @@
 import React, {useState, useContext} from 'react'
 import { store } from './App'
 import { Navigate } from 'react-router-dom'
+import { API_URL } from './api'
 
 
 const Login = () => {
@@ -33,7 +34,7 @@ const Login = () => {
         }
         setLoading(true)
         try{
-        const res = await fetch(`http://localhost:4000/users/login`, {
+        const res = await fetch(`${API_URL}/users/login`, {
             method:"POST",
             headers:{"Content-type":"application/json"},
             body:JSON.stringify(data)
