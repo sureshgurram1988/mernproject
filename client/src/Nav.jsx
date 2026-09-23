@@ -8,7 +8,7 @@ const Nav = () => {
   return (
     <nav className="app-nav">
       <div className="app-nav-inner">
-        <Link className="app-brand" to="/">Northstar</Link>
+        <Link className="app-brand" to="/">Suryastar</Link>
         {!token && (
           <ul className="app-nav-list">
             <li><a className="app-nav-link" href="/#home">Home</a></li>

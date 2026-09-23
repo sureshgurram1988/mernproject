@@ -75,10 +75,10 @@ const Home = () => {
 
       <footer className="home-footer">
         <div>
-          <strong>Northstar</strong>
+          <strong>Suryastar</strong>
           <p>A focused workspace for growing teams.</p>
         </div>
-        <p>© 2026 Northstar. All rights reserved.</p>
+        <p>© 2026 Suryastar. All rights reserved.</p>
       </footer>
     </main>
   )
