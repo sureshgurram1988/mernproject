@@ -5,6 +5,7 @@ const Register = () => {
   const navigate = useNavigate()
   const[error, setError] = useState({username:"", email:"", password:"", confirmpassword:""})
   const[success, setSuccess] = useState("")
+  const[loading, setLoading] = useState(false)
     const[data, setData] = useState({
         username:"",
         email:"",
@@ -36,6 +37,7 @@ const Register = () => {
         setError(errorMessages)
         return
       }
+      setLoading(true)
         try{
             const res = await fetch(`http://localhost:4000/users/add-emp`, {
             method:"POST",
@@ -57,6 +59,9 @@ const Register = () => {
         }
         catch(err){
           console.error("Unable to connect to the server", err)
+        }
+        finally{
+          setLoading(false)
         }
         
     }
@@ -85,7 +90,14 @@ const Register = () => {
           <input id="confirm-password" type="password" className={`form-control ${error.confirmpassword ? "is-invalid" : ""}`} name="confirmpassword" value={data.confirmpassword} onChange={changeHandler}/>
           {error.confirmpassword && <div className="invalid-feedback" role="alert">{error.confirmpassword}</div>}
         </div>
-        <button type="submit" className="btn btn-primary">Register</button>
+        <button type="submit" className="btn btn-primary" disabled={loading} aria-busy={loading}>
+          {loading ? (
+            <>
+              <span className="spinner-border spinner-border-sm me-2" aria-hidden="true"></span>
+              Registering...
+            </>
+          ) : "Register"}
+        </button>
       </form>
     </main>
   )
