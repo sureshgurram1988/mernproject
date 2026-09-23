@@ -76,5 +76,44 @@ const getEmployees = async (req, res) => {
         res.status(500).json({message:"Server Error"})
     }
 }
+const singleEmployee = async (req, res) => {
+    try{
+        const employee = await Employee.findById(req.params.id)
+        res.status(200).json(employee)
+    }
+    catch(error){
+        console.log(`There is an error ${error}`)
+        res.status(500).json({message:"Server Error"})
+    }
+}
+const updateEmployee = async (req, res) => {
 
-export default {createEmployee, employeeLogin, employeeProfile, getEmployees}
+    try{
+        const{username, email, password, confirmpassword } = req.body;
+        let exist = await Employee.findById(req.params.id)
+        if(!exist){
+            return res.status(404).json({Message:"user not found"})
+        }
+        const employee = await Employee.findByIdAndUpdate(req.params.id, {username, email, password, confirmpassword}, {new:true, runValidators:true})
+        res.status(200).json(employee)
+    }
+    catch(error){
+        console.log(`There is an error ${error}`)
+        res.status(500).json({message:"Server Error"})
+    }
+}
+const deleteEmployee = async (req, res) => {
+    try{
+        let exist = await Employee.findById(req.params.id)  
+        if(!exist){
+            return res.status(404).json({Message:"user not found"})
+        }
+        await Employee.findByIdAndDelete(req.params.id)
+        res.status(200).json({Message:"User deleted successfully"})
+    }
+    catch(error){
+        console.log(`There is an error ${error}`)
+        res.status(500).json({message:"Server Error"})
+    }
+}
+export default {createEmployee, employeeLogin, employeeProfile, getEmployees, singleEmployee, updateEmployee, deleteEmployee}

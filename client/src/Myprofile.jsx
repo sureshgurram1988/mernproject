@@ -6,6 +6,7 @@ import UserDetails from './UserDetails'
 const Myprofile = () => {
   const[data, setData]= useState(null)
   const[token, setToken] = useContext(store)
+  const[loading, setLoading] = useState(true)
   const[dropdownOpen, setDropdownOpen] = useState(false)
   const[users, setUsers] = useState([])
   useEffect(() => {
@@ -17,6 +18,7 @@ const Myprofile = () => {
         })
         .then(res => res.json())
         .then(data => setData(data))
+        .finally(() => setLoading(false))
       }
     
   }, [token])
@@ -24,8 +26,22 @@ const Myprofile = () => {
   if(!token){
     return <Navigate to="/login" />
   }
+  if(loading){
+    return (
+      <main className="myprofile-page profile-loading" aria-live="polite">
+        <div className="spinner-border text-primary" role="status" aria-label="Loading profile"></div>
+        <p>Loading your profile...</p>
+      </main>
+    )
+  }
+  const cards = [
+    { icon: '👤', title: 'Profile', description: 'Manage your personal info and account details.' },
+    { icon: '📧', title: 'Messages', description: 'Check account updates and important notifications.' },
+    { icon: '📊', title: 'Analytics', description: 'View your activity and performance summary at a glance.' },
+    { icon: '🔒', title: 'Security', description: 'Stay protected with secure access and account safety.' },
+  ]
   return (
-    <div>
+    <div className="myprofile-page">
       {
         data && (
           <div className="dropdown profile-menu d-flex justify-content-end mb-4">
@@ -55,6 +71,18 @@ const Myprofile = () => {
           </div>
         )
       }
+      <h2>Welcome {data?.username || 'User'}</h2>
+
+      <div className="profile-card-grid">
+        {cards.map((card) => (
+          <div className="profile-card" key={card.title}>
+            <div className="profile-card-icon">{card.icon}</div>
+            <h3>{card.title}</h3>
+            <p>{card.description}</p>
+            <button className="profile-readmore">Read more</button>
+          </div>
+        ))}
+      </div>
       <UserDetails />
     </div>
   )

@@ -4,6 +4,7 @@ import Nav from './Nav'
 import Login from "./Login"
 import Register from "./Register"
 import Myprofile from "./Myprofile"
+import Home from "./Home"
 
 export const store = createContext()
 const App = () => {
@@ -14,6 +15,7 @@ const App = () => {
       <BrowserRouter>
       <Nav />
       <Routes>
+        <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/myprofile" element={<Myprofile />} />
