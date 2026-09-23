@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import heroImage from './assets/hero.png'
 
 const Home = () => {
@@ -59,7 +60,7 @@ const Home = () => {
             <span className="service-number">01</span>
             <h3>Organize your people</h3>
             <p>Keep employee details structured and accessible, from first registration through everyday profile management.</p>
-            <a href="/register">Create an account <i className="bi bi-arrow-up-right"></i></a>
+            <Link to="/register">Create an account <i className="bi bi-arrow-up-right"></i></Link>
           </div>
         </article>
         <article className="service-row service-row-reverse">
