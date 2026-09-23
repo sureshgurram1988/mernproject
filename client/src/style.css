@@ -1,0 +1,145 @@
+:root {
+  --app-ink: #172033;
+  --app-muted: #667085;
+  --app-line: #d9e0ea;
+  --app-surface: #ffffff;
+  --app-background: #f4f7fb;
+  --app-primary: #2563eb;
+  --app-primary-dark: #1d4ed8;
+  --app-danger: #dc3545;
+  --app-shadow: 0 18px 45px rgba(31, 50, 81, 0.1);
+}
+
+body {
+  background: var(--app-background);
+  color: var(--app-ink);
+}
+
+.app-shell {
+  min-height: 100vh;
+}
+
+.app-nav {
+  background: var(--app-surface);
+  border-bottom: 1px solid var(--app-line);
+  box-shadow: 0 2px 12px rgba(31, 50, 81, 0.06);
+}
+
+.app-nav-list {
+  display: flex;
+  gap: 1.5rem;
+  max-width: 1126px;
+  margin: 0 auto;
+  padding: 1rem 1.5rem;
+  list-style: none;
+}
+
+.app-nav-link {
+  color: var(--app-muted);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.app-nav-link:hover {
+  color: var(--app-primary);
+}
+
+.auth-page,
+.profile-page {
+  width: min(100% - 2rem, 1126px);
+  margin: 0 auto;
+  padding: 3rem 0;
+}
+
+.auth-card {
+  width: min(100%, 430px);
+  margin: 0 auto;
+  padding: 2rem;
+  background: var(--app-surface);
+  border: 1px solid var(--app-line);
+  border-radius: 0.75rem;
+  box-shadow: var(--app-shadow);
+}
+
+.auth-title {
+  margin-bottom: 1.5rem;
+  color: var(--app-ink);
+  font-size: 1.75rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.form-label {
+  color: var(--app-ink);
+  font-weight: 600;
+}
+
+.form-control{
+    text-align: left;
+}
+.form-control:focus {
+  border-color: var(--app-primary);
+  box-shadow: 0 0 0 0.2rem rgba(37, 99, 235, 0.15);
+}
+
+.error {
+  color: var(--app-danger);
+  font-size: 0.875rem;
+}
+
+.profile-menu {
+  position: relative;
+}
+
+.profile-menu-list {
+  top: 100%;
+  right: 0;
+  left: auto;
+  z-index: 1050;
+  margin-top: 0.25rem;
+}
+
+.profile-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.profile-title {
+  margin: 0;
+  color: var(--app-ink);
+  font-size: 1.75rem;
+  font-weight: 700;
+}
+
+.users-section {
+  overflow-x: auto;
+  padding: 1rem;
+  background: var(--app-surface);
+  border: 1px solid var(--app-line);
+  border-radius: 0.75rem;
+  box-shadow: var(--app-shadow);
+}
+
+.users-table {
+  min-width: 620px;
+  margin-bottom: 0;
+}
+
+@media (max-width: 576px) {
+  .auth-page,
+  .profile-page {
+    padding: 2rem 0;
+  }
+
+  .auth-card {
+    padding: 1.25rem;
+  }
+
+  .profile-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
